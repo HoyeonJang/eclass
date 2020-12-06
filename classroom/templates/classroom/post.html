@@ -1,0 +1,23 @@
+{% extends 'classroom/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+    <h1>fuck this shit</h1>
+    {% if user.is_professor %}
+            <button class="btn btn-light" type="button">
+                <a href="{% url 'classroom:post_create' %}">Post Create</a>
+            </button>
+        {% endif %}
+    {% for post in posts %}
+    <article class="media content-section">
+    <div class="media-body">
+        <a href="{% url 'classroom:post_detail' post.pk %}" class="border-bottom mb-4">
+            {{ post.title }}
+            <a class="mb-4 right">{{ post.created_date }}</a>
+        </a>
+         <p class="article-content">{{ post.text }}</p>
+        <legend class="border-bottom mb-4"></legend>
+    </div>
+    </article>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

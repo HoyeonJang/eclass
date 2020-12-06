@@ -1,0 +1,13 @@
+{% extends "classroom/base.html" %}
+{% block content %}
+<div class="card my-4">
+                <h5 class="card-header">Class Assign</h5>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button class="btn btn-primary" type="submit">Assign</button>
+                    </form>
+                </div>
+</div>
+{% endblock %}

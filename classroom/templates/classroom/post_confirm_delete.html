@@ -1,0 +1,13 @@
+{% extends "classroom/base.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+            <legend class="border-bottom mb-4">Delete Post</legend>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+            <a class="btn btn-outline-secondary" href="{% url 'classroom:post_detail' object.id %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'classroom/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.is_professor %}
+            <button class="btn btn-light" type="button">
+                <a href="{% url 'classroom:category_create' class_pk.id %}">Create Category</a>
+            </button>
+        {% endif %}
+    {% for category in categories %}
+        <article class="media content-section">
+          <div class="media-body">
+              <div>
+              <a href="{% url 'classroom:posts' category.id %}">
+                {{ category.title }}
+              </a>
+              </div>
+          </div>
+        </article>
+    {% endfor %}
+    <article class="media content-section">
+            <div>
+                <a href="{% url 'classroom:lecture_students' class_pk.id %}">
+                    Studnets
+                </a>
+            </div>
+        </article>
+    {% endif %}
+{% endblock %}

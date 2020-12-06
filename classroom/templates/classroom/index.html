@@ -1,0 +1,38 @@
+{% extends 'classroom/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+    {% if user.is_professor %}
+    <div class="card my-4">
+                <h5 class="card-header">Class Create</h5>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'classroom:class_create' %}">
+                {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">Class Title:</label><br>
+                            <input type="text" name="title"><br>
+                            <label for="season">Class Season:</label><br>
+                            <input type="text" name="season"><br>
+                            <label for="start">Start Time:</label><br>
+                            <input type="time" name="start"><br>
+                            <label for="end">End Time:</label><br>
+                            <input type="time" name="end"><br>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </form>
+                </div>
+    </div>
+    {% else %}
+    <a href="{% url 'classroom:assign' %}">Assign</a>
+    {% endif %}
+    {% for box in classes %}
+        <article class="media content-section">
+          <div class="media-body">
+          <h2><a class="border-bottom mb-4" href="{% url 'classroom:lecture' box.classes.id %}">{{ box.classes.title }}</a></h2>
+              <small class="text-muted">start : {{ box.classes.start_time }}</small><br>
+              <small class="text-muted">end : {{ box.classes.end_time }}</small><br>
+          </div>
+        </article>
+
+    {% endfor %}
+    {% endif %}
+{% endblock %}

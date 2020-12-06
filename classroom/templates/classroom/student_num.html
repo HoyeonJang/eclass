@@ -1,0 +1,8 @@
+{% extends 'classroom/base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% for student in students %}
+            <a>{{ student.student.name }}</a>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
